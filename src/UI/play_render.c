@@ -17,22 +17,39 @@
 #include "../game/player_movement.h"
 #include "../game/specialConditions/wind.h"
 #include "../math/math.h"
+
 #include "log/log.h"
 
 static void playMain(App* app, uint32_t SEED);
 
 static void renderMap(SDL_Renderer* renderer, int32_t* heightmap,
                       int32_t* basedMap, int32_t width, int32_t height) {
+  uint8_t currR1, currG1, currB1;
+  uint8_t currR2, currG2, currB2;
+  uint8_t currR3, currG3, currB3;
+
+  currR1 = rand() % 255;
+  currG1 = rand() % 255;
+  currB1 = rand() % 255;
+
+  currR2 = rand() % 255;
+  currG2 = rand() % 255;
+  currB2 = rand() % 255;
+
+  currR3 = rand() % 255;
+  currG3 = rand() % 255;
+  currB3 = rand() % 255;
+
   for (int32_t x = 0; x < width; x++) {
     for (int32_t y = heightmap[x]; y >= 0; y--) {
       if (y < basedMap[x] * 0.8) {
-        SDL_SetRenderDrawColor(renderer, 1, 97, 1, 255);
+        SDL_SetRenderDrawColor(renderer, currR1, currG1, currB1, 255);
         SDL_RenderDrawPoint(renderer, x, height - y);
       } else if (y < basedMap[x] * 0.9) {
-        SDL_SetRenderDrawColor(renderer, 4, 137, 3, 255);
+        SDL_SetRenderDrawColor(renderer, currR2, currG2, currB2, 255);
         SDL_RenderDrawPoint(renderer, x, height - y);
       } else {
-        SDL_SetRenderDrawColor(renderer, 1, 181, 0, 255);
+        SDL_SetRenderDrawColor(renderer, currR3, currG3, currB3, 255);
         SDL_RenderDrawPoint(renderer, x, height - y);
       }
     }
@@ -449,7 +466,7 @@ static void playMain(App* app, uint32_t SEED) {
     SDL_RenderClear(app->renderer);
 
     // rendering map
-    if (regenMap) {
+    if (regenMap || 1) {
       SDL_DestroyTexture(gameMap);
       gameMap = saveRenderMapToTexture(app->renderer, app->screenWidth,
                                        app->screenHeight, heightMap, basedMap);

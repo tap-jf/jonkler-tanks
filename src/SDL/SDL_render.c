@@ -8,6 +8,8 @@
 #include "event_handlers.h"
 #include "log/log.h"
 
+int32_t ANGLE_MUSHROOM_MODE = 0;
+
 /*  This function creates renderObject with different internals and accepts different amount of args
  *  1) if flags & TEXT it will accept args in this order:
  *      a. const char* textToInsert, TTF_Font* font, SDL_Point* position, SDL_Color* normalColor
@@ -390,12 +392,12 @@ void renderTextures(App* app, RenderObject* objectsArr[],
       if (currRenderObject.canBeTriggered &&
           SDL_PointInRect(&(SDL_Point){x, y},
                           &currRenderObject.data.texture.scaleRect)) {
-        SDL_RenderCopyEx(app->renderer,
-                         currRenderObject.data.texture.triggeredTexture, NULL,
-                         &currRenderObject.data.texture.scaleRect,
-                         currRenderObject.data.texture.angle,
-                         currRenderObject.data.texture.centerRot,
-                         currRenderObject.data.texture.flipFlag);
+        SDL_RenderCopyEx(
+            app->renderer, currRenderObject.data.texture.triggeredTexture, NULL,
+            &currRenderObject.data.texture.scaleRect,
+            currRenderObject.data.texture.angle + ANGLE_MUSHROOM_MODE,
+            currRenderObject.data.texture.centerRot,
+            currRenderObject.data.texture.flipFlag);
         mouseShouldBeTriggered = SDL_TRUE;
         app->buttonPosTriggered = currRenderObject.buttonName;
       } else {
@@ -411,11 +413,12 @@ void renderTextures(App* app, RenderObject* objectsArr[],
               .w = currRenderObject.data.texture.fixedWidth,
           };
 
-          SDL_RenderCopyEx(app->renderer, currRenderObject.data.texture.texture,
-                           &source, &currRenderObject.data.texture.scaleRect,
-                           currRenderObject.data.texture.angle,
-                           currRenderObject.data.texture.centerRot,
-                           currRenderObject.data.texture.flipFlag);
+          SDL_RenderCopyEx(
+              app->renderer, currRenderObject.data.texture.texture, &source,
+              &currRenderObject.data.texture.scaleRect,
+              currRenderObject.data.texture.angle + ANGLE_MUSHROOM_MODE,
+              currRenderObject.data.texture.centerRot,
+              currRenderObject.data.texture.flipFlag);
           objectsArr[i]->data.texture.currFrame++;
 
           // hiding gif if its shouldn't render rn (was rendered)
@@ -427,11 +430,12 @@ void renderTextures(App* app, RenderObject* objectsArr[],
         }
         // if its not
         else {
-          SDL_RenderCopyEx(app->renderer, currRenderObject.data.texture.texture,
-                           NULL, &currRenderObject.data.texture.scaleRect,
-                           currRenderObject.data.texture.angle,
-                           currRenderObject.data.texture.centerRot,
-                           currRenderObject.data.texture.flipFlag);
+          SDL_RenderCopyEx(
+              app->renderer, currRenderObject.data.texture.texture, NULL,
+              &currRenderObject.data.texture.scaleRect,
+              currRenderObject.data.texture.angle + ANGLE_MUSHROOM_MODE++,
+              currRenderObject.data.texture.centerRot,
+              currRenderObject.data.texture.flipFlag);
         }
       }
     }
