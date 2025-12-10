@@ -66,6 +66,10 @@ struct playMainObjects {
   RenderObject* cloud8;
   RenderObject* cloud9;
   RenderObject* cloud10;
+  RenderObject* cloud11;
+  RenderObject* cloud12;
+  RenderObject* cloud13;
+  RenderObject* cloud14;
   RenderObject* stone1;
   RenderObject* stone2;
 

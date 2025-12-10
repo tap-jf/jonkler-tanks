@@ -364,6 +364,10 @@ inline static void playMainClear(App* app, struct playMainObjects* objs) {
   freeRenderObject(objs->cloud8);
   freeRenderObject(objs->cloud9);
   freeRenderObject(objs->cloud10);
+  freeRenderObject(objs->cloud11);
+  freeRenderObject(objs->cloud12);
+  freeRenderObject(objs->cloud13);
+  freeRenderObject(objs->cloud14);
 
   TTF_CloseFont(objs->smallFont);
   SDL_DestroyTexture(objs->gameMap);
@@ -641,16 +645,20 @@ static void playMain(App* app, uint32_t SEED) {
     objs->tree5 = createTree(app, objs->heightMap, 850, 950, 10);
     uint32_t currCnt = 0;
     // creating clouds
-    objs->cloud1 = createCloud(app, objs->heightMap, 150, 200, 10, currCnt++);
-    objs->cloud2 = createCloud(app, objs->heightMap, 200, 350, 10, currCnt++);
-    objs->cloud3 = createCloud(app, objs->heightMap, 350, 500, 10, currCnt++);
-    objs->cloud4 = createCloud(app, objs->heightMap, 500, 650, 10, currCnt++);
-    objs->cloud5 = createCloud(app, objs->heightMap, 650, 800, 10, currCnt++);
-    objs->cloud6 = createCloud(app, objs->heightMap, 200, 350, 10, currCnt++);
-    objs->cloud7 = createCloud(app, objs->heightMap, 650, 800, 10, currCnt++);
-    objs->cloud8 = createCloud(app, objs->heightMap, 250, 600, 0, currCnt++);
-    objs->cloud9 = createCloud(app, objs->heightMap, 250, 600, 0, currCnt++);
-    objs->cloud10 = createCloud(app, objs->heightMap, 250, 600, 0, currCnt++);
+    objs->cloud1 = createCloud(app, objs->heightMap, 80, 400, 0, currCnt++);
+    objs->cloud2 = createCloud(app, objs->heightMap, 80, 400, 0, currCnt++);
+    objs->cloud3 = createCloud(app, objs->heightMap, 80, 400, 0, currCnt++);
+    objs->cloud4 = createCloud(app, objs->heightMap, 80, 400, 0, currCnt++);
+    objs->cloud5 = createCloud(app, objs->heightMap, 80, 400, 0, currCnt++);
+    objs->cloud6 = createCloud(app, objs->heightMap, 80, 400, 0, currCnt++);
+    objs->cloud7 = createCloud(app, objs->heightMap, 80, 400, 0, currCnt++);
+    objs->cloud8 = createCloud(app, objs->heightMap, 690, 940, 0, currCnt++);
+    objs->cloud9 = createCloud(app, objs->heightMap, 690, 800, 0, currCnt++);
+    objs->cloud10 = createCloud(app, objs->heightMap, 690, 800, 0, currCnt++);
+    objs->cloud11 = createCloud(app, objs->heightMap, 690, 800, 0, currCnt++);
+    objs->cloud12 = createCloud(app, objs->heightMap, 690, 800, 0, currCnt++);
+    objs->cloud13 = createCloud(app, objs->heightMap, 690, 800, 0, currCnt++);
+    objs->cloud14 = createCloud(app, objs->heightMap, 690, 800, 0, currCnt++);
 
     currCnt = 0;
     // creating stones
@@ -812,6 +820,10 @@ static void playMain(App* app, uint32_t SEED) {
       objs->cloud8,
       objs->cloud9,
       objs->cloud10,
+      objs->cloud11,
+      objs->cloud12,
+      objs->cloud13,
+      objs->cloud14,
       objs->playerScore1,
       objs->playerScore2,
       objs->p1DoubleDmgIcon,
